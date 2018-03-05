@@ -230,12 +230,12 @@ sda_religionszugehoerigkeit_12
 daten_buecherbesitz <- daten_hintergrund_1516 %>%
   mutate(bücherbesitz = fct_recode(
     bücherbesitz, 
-    "1-50 Bücher" = "1-10 Bücher", 
-    "1-50 Bücher" = "11-50 Bücher", 
-    "51-250 Bücher" = "51-100 Bücher", 
-    "51-250 Bücher" = "101-250 Bücher", 
-    "mehr als 250 Bücher" = "251-500 Bücher", 
-    "mehr als 250 Bücher" =  "mehr als 500 Bücher"))
+    "1-50 books" = "1-10 Bücher", 
+    "1-50 books" = "11-50 Bücher", 
+    "51-250 books" = "51-100 Bücher", 
+    "51-250 books" = "101-250 Bücher", 
+    "more than 250 books" = "251-500 Bücher", 
+    "more than 250 books" =  "mehr als 500 Bücher"))
 
 supvar_buecherbesitz <- supvar_stats(mca_studienalltag, daten_buecherbesitz, "bücherbesitz")
 supvar_buecherbesitz
@@ -246,8 +246,8 @@ sda_buecherbesitz_12 <- fviz_gda_quali_ellipses(mca_studienalltag, daten_buecher
 sda_buecherbesitz_12
 
 sda_buecherbesitz_supvar_12 <- fviz_gda_quali_supvar(mca_studienalltag, daten_buecherbesitz, "bücherbesitz", 
-                                                     title = "Studienalltag (WS15/16) — Bücherbesitz", 
-                                                     path = TRUE, scale_text = FALSE, size_text = 6) +
+                                                     title = "", 
+                                                     path = TRUE, scale_text = FALSE, size_text = 6, axis_lab_name = "Axis") +
   scale_size_continuous(range = c(3,6))
 sda_buecherbesitz_supvar_12
 ggsave("/Users/fabianmundt/LemaS Cloud/Topological MMR/Diagramme MCA/SF books.pdf",sda_buecherbesitz_supvar_12)
