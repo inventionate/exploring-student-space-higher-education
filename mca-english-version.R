@@ -339,7 +339,7 @@ profiles <- mca_studienalltag$ind$coord %>% data.frame() %>% rownames_to_column(
     "Hedda" = "21234"))
 
 # Clusterplot Interviewpartner/innen
-pacman::p_unload(TimeSpaceAnalysis);pacman::p_load(TimeSpaceAnalysis)
+
 plot_clusteranalyse_interview_12 <- fviz_gda_quali_ellipses(mca_studienalltag, df_clust, "clust", facet = FALSE, show_prop = TRUE,
                                                             title = "", plot_eta2 = FALSE, axis_lab_name = "Axis") + 
   geom_label_repel(data = profiles, inherit.aes = FALSE, aes(x = Dim.1, y = Dim.2, label = name, colour = cluster), 
@@ -350,7 +350,7 @@ ggsave("/Users/fabianmundt/LemaS Cloud/Topological MMR/Diagramme MCA/HCPC profil
 
 # Biplot Achse 1 und 2 Interviewpartner/innen
 plot_mca_biplot_cluster_12 <- fviz_gda_var(mca_studienalltag, group = gruppen$spalten, group_names = gruppen$namen, 
-                                           title = "Biplot", contrib = "auto", individuals = TRUE, axis_lab_name = "Axis", 
+                                           title = "", contrib = "auto", individuals = TRUE, axis_lab_name = "Axis", 
                                            group_lab_name = "Variable groups") +
   geom_label_repel(data = profiles, inherit.aes = FALSE, aes(x = Dim.1, y = Dim.2, label = name),
                    size = 5, alpha = 0.85, segment.colour = "black", segment.size = 1.5) +
