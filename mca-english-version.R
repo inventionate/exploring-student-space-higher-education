@@ -253,7 +253,7 @@ reporttools::tableNominal(mca_studienalltag$call$X, comment = FALSE)
 # Individuen
 
 # Achse 1 und 2
-plot_mca_ind_12 <- fviz_gda_conc_ellipse(mca_studienalltag, title = "Cloud of individuals", fill = "transparent", axis_lab_name = "Axis") ;plot_mca_ind_12
+plot_mca_ind_12 <- fviz_gda_conc_ellipse(mca_studienalltag, title = "", fill = "transparent", axis_lab_name = "Axis") ;plot_mca_ind_12
 ggsave("/Users/fabianmundt/LemaS Cloud/Topological MMR/Diagramme MCA/Cloud of individuals.pdf", plot_mca_ind_12,width = 25, height = 25, units = "cm")
 
 # Achse 1
@@ -276,7 +276,7 @@ fviz_mca_var_corr(mca_studienalltag, axes = c(3,4)) + xlim(0, 0.25) + ylim(0, 0.
 
 # Biplot Achse 1 und 2
 plot_mca_biplot_12 <- fviz_gda_var(mca_studienalltag, group = gruppen$spalten, group_names = gruppen$namen, 
-                                   title = "Biplot clouds of individuald and categories", contrib = "auto", individuals = TRUE, 
+                                   title = "", contrib = "auto", individuals = TRUE, 
                                    axis_lab_name = "Axis", group_lab_name = "Variable groups");plot_mca_biplot_12
 ggsave("/Users/fabianmundt/LemaS Cloud/Topological MMR/Diagramme MCA/Biplot.pdf", plot_mca_biplot_12, width = 25, height = 25, units = "cm")
 
@@ -341,7 +341,7 @@ profiles <- mca_studienalltag$ind$coord %>% data.frame() %>% rownames_to_column(
 # Clusterplot Interviewpartner/innen
 pacman::p_unload(TimeSpaceAnalysis);pacman::p_load(TimeSpaceAnalysis)
 plot_clusteranalyse_interview_12 <- fviz_gda_quali_ellipses(mca_studienalltag, df_clust, "clust", facet = FALSE, show_prop = TRUE,
-                                                            title = "HCPC", plot_eta2 = FALSE, axis_lab_name = "Axis") + 
+                                                            title = "", plot_eta2 = FALSE, axis_lab_name = "Axis") + 
   geom_label_repel(data = profiles, inherit.aes = FALSE, aes(x = Dim.1, y = Dim.2, label = name, colour = cluster), 
                    size = 5, alpha = 1, segment.colour = "black", segment.size = 1.5) +
   designate_axes(0.63, -0.025, c("Intensity +", "Intensity -")) +
@@ -353,5 +353,7 @@ plot_mca_biplot_cluster_12 <- fviz_gda_var(mca_studienalltag, group = gruppen$sp
                                            title = "Biplot", contrib = "auto", individuals = TRUE, axis_lab_name = "Axis", 
                                            group_lab_name = "Variable groups") +
   geom_label_repel(data = profiles, inherit.aes = FALSE, aes(x = Dim.1, y = Dim.2, label = name),
-                   size = 5, alpha = 0.85, segment.colour = "black", segment.size = 1.5);plot_mca_biplot_cluster_12
+                   size = 5, alpha = 0.85, segment.colour = "black", segment.size = 1.5) +
+  scale_colour_brewer(name = "Variable groups", palette = "Set1") +
+  scale_shape_manual(name = "Variable groups", values = c(15, 17, 18));plot_mca_biplot_cluster_12
 ggsave("/Users/fabianmundt/LemaS Cloud/Topological MMR/Diagramme MCA/Biplot profiles.pdf", plot_mca_biplot_cluster_12, width = 25, height = 25, units = "cm")
